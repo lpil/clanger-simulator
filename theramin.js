@@ -14,18 +14,18 @@ toggleGain.gain.value = 0;
 osc.frequency.value = 440;
 osc.start();
 
-function scaleFrequency(n) {
-  var min = Math.log(A0);
-  var max = Math.log(C8);
-  var scale = max - min;
-  return Math.exp(min + scale * n);
+function logScale(n, min, max) {
+  const top = Math.log(max);
+  const bot = Math.log(min);
+  const scale = top - bot;
+  return Math.exp(bot + scale * n);
 }
 
 document.onmousemove = function(event) {
   const y = 1 - event.pageY / window.innerHeight;
   const x = event.pageX / window.innerWidth;
-  osc.frequency.value  = scaleFrequency(x)
-  mouseGain.gain.value = y;
+  osc.frequency.value  = logScale(x, A0, C8)
+  mouseGain.gain.value = logScale(y, 0.02, 1);
 }
 
 document.onmousedown = function() { toggleGain.gain.value = 1; }
