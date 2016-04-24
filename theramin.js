@@ -26,7 +26,19 @@ document.onmousemove = function(event) {
   const x = event.pageX / window.innerWidth;
   osc.frequency.value  = logScale(x, A0, C8)
   mouseGain.gain.value = logScale(y, 0.02, 1);
+  const hue = x * 340;
+  const sat = Math.round(y * 100);
+  const lit = Math.round(y * 65);
+  document.body.parentElement.style.backgroundColor =
+    `hsl(${hue}, ${sat}%, ${lit}%)`;
+  console.log( document.body.parentElement.style.backgroundColor);
 }
 
-document.onmousedown = function() { toggleGain.gain.value = 1; }
-document.onmouseup   = function() { toggleGain.gain.value = 0; }
+document.onmousedown = function() {
+  document.body.style.opacity = 0;
+  toggleGain.gain.value = 1;
+}
+document.onmouseup = function() {
+  document.body.style.opacity = 1;
+  toggleGain.gain.value = 0;
+}
