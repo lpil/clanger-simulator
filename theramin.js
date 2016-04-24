@@ -31,7 +31,6 @@ document.onmousemove = function(event) {
   const lit = Math.round(y * 65);
   document.body.parentElement.style.backgroundColor =
     `hsl(${hue}, ${sat}%, ${lit}%)`;
-  console.log( document.body.parentElement.style.backgroundColor);
 }
 
 document.onmousedown = function() {
