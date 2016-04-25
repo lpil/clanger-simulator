@@ -30,7 +30,7 @@ document.onmousemove = function(event) {
   const sat = Math.round(y * 100);
   const lit = Math.round(y * 65);
   document.body.parentElement.style.backgroundColor =
-    `hsl(${hue}, ${sat}%, ${lit}%)`;
+    "hsl("+hue+","+sat+"%,"+lit+"%)";
 }
 
 document.onmousedown = function() {
